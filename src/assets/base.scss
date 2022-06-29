@@ -20,6 +20,8 @@
   --vt-c-text-light-2: rgba(60, 60, 60, 0.66);
   --vt-c-text-dark-1: var(--vt-c-white);
   --vt-c-text-dark-2: rgba(235, 235, 235, 0.64);
+  --color-background-top: rgba(60, 60, 60, 1);
+  --color-text-top: var(--vt-c-text-dark-1);
 }
 
 /* semantic color variables for this project */
@@ -76,7 +78,31 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.material-icons {
+div {
+  box-sizing: border-box;
+}
+
+.material-icons, .material-icons-outlined {
   user-select: none !important;
   vertical-align: top;
+}
+
+.flex-table {
+  display: flex;
+  flex-flow: row wrap;
+  border-left: solid 1px;
+  transition: 0.5s;
+  &:first-of-type {
+    border-top: solid 1px;
+    border-left: solid 1px;
+  }
+  &:first-of-type .flex-row {
+    background: #0f0f0f;
+    color: white;
+    border-color: #ddd;
+  }
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }

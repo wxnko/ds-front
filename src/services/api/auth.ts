@@ -15,6 +15,7 @@ export interface UserLogin {
   id: number;
   username: string;
   accessToken?: string;
+  refreshToken?: string;
   email: string;
   first_name: string;
   last_name: string;
@@ -39,6 +40,16 @@ export class endpoints<
       format: "json",
       ...params,
     });
+
+  refreshToken = (data: { refreshToken: string }, params: RequestParams = {}) =>
+  this.request<UserLogin, void | GenericErrorModel>({
+    path: "/auth/token",
+    method: "POST",
+    body: data,
+    type: ContentType.Json,
+    format: "json",
+    ...params,
+  });
 }
 
 export default endpoints;

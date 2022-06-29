@@ -57,7 +57,6 @@ const playlistsArray = [
 <style>
 .main {
   margin-left: 200px;
-  padding: 20px;
 }
 </style>
 <style scoped>
@@ -79,6 +78,10 @@ li {
   overflow-x: hidden;
   padding-top: 20px;
   padding-left: 10px;
+  color: var(--vt-c-text-dark-2);
+  -webkit-box-shadow: 1px 0px 31px -17px rgba(66, 68, 90, 1);
+  -moz-box-shadow: 1px 0px 31px -17px rgba(66, 68, 90, 1);
+  box-shadow: 1px 0px 31px -17px rgba(66, 68, 90, 1);
 }
 
 .sidenav-brand {

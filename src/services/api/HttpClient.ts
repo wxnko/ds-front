@@ -12,6 +12,7 @@ export type ResponseFormat = keyof Omit<Body, "body" | "bodyUsed">;
 export interface FullRequestParams extends Omit<RequestInit, "body"> {
   /** set parameter to `true` for call `securityWorker` for this request */
   secure?: boolean;
+  dontRepeat?: boolean;
   /** request path */
   path: string;
   /** content type of request body */
@@ -189,6 +190,7 @@ export class HttpClient<SecurityDataType = unknown> {
     format,
     baseUrl,
     cancelToken,
+    dontRepeat = false,
     ...params
   }: FullRequestParams): Promise<HttpResponse<T, E>> => {
     const secureParams =
@@ -207,6 +209,9 @@ export class HttpClient<SecurityDataType = unknown> {
       {
         ...requestParams,
         headers: {
+          ...(this.securityData
+            ? {'Authorization': `Bearer ${this.securityData.accessToken}`}
+            : {}),
           ...(type && type !== ContentType.FormData
             ? { "Content-Type": type }
             : {}),
@@ -243,7 +248,33 @@ export class HttpClient<SecurityDataType = unknown> {
         this.abortControllers.delete(cancelToken);
       }
 
-      if (!response.ok) throw data;
+      if(response.status == 401) {
+        if(dontRepeat) {
+          return data;
+        }
+        const userStore = await import('@/stores/user')
+        const { updateToken } = userStore.useUserStore();
+        try {
+          await updateToken();
+          return await this.request({
+            dontRepeat: true,
+            body,
+            secure,
+            path,
+            type,
+            query,
+            format,
+            baseUrl,
+            cancelToken,
+            ...params
+          })
+        } catch(err) {
+          throw data;
+        }
+      } else {
+        if (!response.ok) throw data;
+        return data;
+      }
       return data;
     });
   };

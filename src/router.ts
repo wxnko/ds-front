@@ -46,6 +46,12 @@ export const routes: RouteRecordRaw[] = [
     component: () => import("@/pages/Login.vue"),
     beforeEnter: () => redirectIfLogged(),
   },
+  {
+    path: "/users",
+    name: "users",
+    component: () => import("@/pages/Users.vue"),
+    beforeEnter: () => redirectIfNotLogged(),
+  },
 ];
 
 export const router = createRouter({

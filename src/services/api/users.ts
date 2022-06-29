@@ -14,13 +14,17 @@ export interface LoginUserRequest {
 export interface User {
   id: number;
   username: string;
-  accessToken?: string;
   email: string;
   first_name: string;
   last_name: string;
   permissions: unknown;
   is_super: boolean;
   details: unknown;
+}
+
+export interface MultipleUserResponse {
+  users: User[];
+  total: number;
 }
 
 export class endpoints<
@@ -30,15 +34,15 @@ export class endpoints<
     super({ baseUrl: apiContext.baseUrl });
     Object.assign(this, apiContext);
   }
-  login = (data: LoginUserRequest, params: RequestParams = {}) =>
-    this.request<User, void | GenericErrorModel>({
-      path: "/auth/login",
-      method: "POST",
-      body: data,
-      type: ContentType.Json,
+  getUsers = (query: {pageSize?: number, page?: number}, params: RequestParams = {}) =>
+    this.request<MultipleUserResponse, void | GenericErrorModel>({
+      path: `/user`,
+      method: "GET",
+      query: query,
+      secure: true,
       format: "json",
       ...params,
-    });
+    })
 }
 
 export default endpoints;
