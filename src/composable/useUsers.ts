@@ -15,7 +15,7 @@ export function useUsers() {
 
     responsePromise
       .then(response => {
-        users.value = response.users;
+        users.value = response.users.sort((a, b) => a.id - b.id);;
         usersTotal.value = response.total;
       })
       .catch(err => {

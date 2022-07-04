@@ -1,5 +1,5 @@
 <template>
-  <ul class="pagination">
+  <ul class="pagination" v-if="pagesCount > 1">
     <li
       v-for="pageNumber in pagesCount"
       :key="pageNumber"
@@ -36,3 +36,14 @@ const pagesCount = computed(() => Math.ceil(count.value / props.limit))
 const isActive = (index: number) => page.value === index
 const onPageChange = (index: number) => emit('page-change', index)
 </script>
+
+<style>
+.pagination {
+  position: fixed;
+  bottom: 5px;
+  right: 5px;
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+</style>

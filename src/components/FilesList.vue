@@ -1,8 +1,8 @@
 <template>
-  <div v-if="filesDownloading">Users downloading</div>
-  <div v-else-if="files.length === 0">No users found</div>
+  <div v-if="filesDownloading">Files downloading</div>
+  <div v-else-if="files.length === 0">No files found</div>
   <template v-else>
-    <div class="d-flex flex-wrap">
+    <div class="d-flex flex-wrap justify-content-center">
       <template v-for="file in files" :key="file.id">
          <FileBox :file="file"/>
         </template>

@@ -5,7 +5,7 @@
     <table class="table table-xs-responsive">
       <thead>
         <tr>
-          <th scope="col">#</th>
+          <th scope="col">Id</th>
           <th scope="col">Username</th>
           <th scope="col">First name</th>
           <th scope="col">Last name</th>

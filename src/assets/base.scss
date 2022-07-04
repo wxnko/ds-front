@@ -59,6 +59,11 @@
     --color-text-focus: var(--vt-c-text-dark-1);
     --color-focus: var(--vt-c-text-light-1);
   }
+  .active>.page-link, .page-link.active {
+    background-color: var(--vt-c-indigo);
+    border-color: var(--color-border-hover);
+    color: var(--color-text-focus);
+  }
 }
 
 *,
@@ -142,4 +147,22 @@ div {
 .card img {
   height: 141px;
   width: auto;
+}
+.card-icon {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  mix-blend-mode: plus-lighter;
+}
+
+.page-link {
+  background-color: var(--color-background-mute);
+  border-color: var(--color-border);
+  color: var(--color-text);
+}
+
+.page-link:hover {
+  background-color: var(--color-background-soft);
+  border-color: var(--color-border-hover);
+  color: var(--color-text-focus);
 }
