@@ -22,6 +22,31 @@ export interface User {
   details: unknown;
 }
 
+export interface UpdateUser {
+  id:number;
+  username: string;
+  email: string;
+  first_name: string;
+  last_name: string;
+  is_super: boolean;
+}
+export interface UserResponse {
+  id:number;
+  username: string;
+  email: string;
+  first_name: string;
+  last_name: string;
+  is_super: boolean;
+}
+export interface AddUser {
+  username: string;
+  email: string;
+  password: string;
+  first_name: string;
+  last_name: string;
+  is_super: boolean;
+}
+
 export interface MultipleUserResponse {
   users: User[];
   total: number;
@@ -40,6 +65,36 @@ export class endpoints<
       method: "GET",
       query: query,
       secure: true,
+      format: "json",
+      ...params,
+    })
+  getUser = (query: {userId: number}, params: RequestParams = {}) =>
+    this.request<UserResponse, void | GenericErrorModel>({
+      path: `/user/${query.userId}`,
+      method: "GET",
+      query: query,
+      secure: true,
+      type: ContentType.Json,
+      format: "json",
+      ...params,
+    })
+  updateUser = (query: UpdateUser, params: RequestParams = {}) =>
+    this.request<UserResponse, void | GenericErrorModel>({
+      path: `/user/${query.id}`,
+      method: "PATCH",
+      body: query,
+      secure: true,
+      type: ContentType.Json,
+      format: "json",
+      ...params,
+    })
+  newUser = (query: UpdateUser, params: RequestParams = {}) =>
+    this.request<UserResponse, void | GenericErrorModel>({
+      path: `/user/`,
+      method: "POST",
+      body: query,
+      secure: true,
+      type: ContentType.Json,
       format: "json",
       ...params,
     })

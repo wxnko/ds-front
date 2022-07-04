@@ -5,7 +5,7 @@ import { useUserStore } from "@/stores/user";
 const userStore = useUserStore();
 
 const classes = () =>
-  userStore.isAuthorized ? "main" : "main main--unauthorized";
+  userStore.isAuthorized ? "main" : "main main-unauthorized";
 </script>
 
 <template>

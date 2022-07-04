@@ -11,6 +11,7 @@
         name="Playlists"
         :items="playlistsArray"
       />
+      <NavigationItem path="/files" icon="perm_media" name="Files" />
       <NavigationItem path="/users" icon="group" name="Users" />
       <NavigationItem path="/profile" icon="person" name="Profile" />
       <NavigationItem
@@ -57,6 +58,9 @@ const playlistsArray = [
 <style>
 .main {
   margin-left: 200px;
+}
+.main-unauthorized {
+  margin-left: initial;
 }
 </style>
 <style scoped>

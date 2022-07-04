@@ -32,7 +32,7 @@ const props = defineProps<Props>()
 const emit = defineEmits<Emits>()
 
 const { count, page } = toRefs(props)
-const pagesCount = computed(() => Math.ceil(count.value / props.limit - 1))
+const pagesCount = computed(() => Math.ceil(count.value / props.limit))
 const isActive = (index: number) => page.value === index
 const onPageChange = (index: number) => emit('page-change', index)
 </script>

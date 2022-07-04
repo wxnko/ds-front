@@ -8,6 +8,7 @@
   --vt-c-black-darker: #0f0f0f;
   --vt-c-black-soft: #222222;
   --vt-c-black-mute: #282828;
+  --vt-c-black-mute: #282828;
 
   --vt-c-indigo: #2c3e50;
 
@@ -22,6 +23,7 @@
   --vt-c-text-dark-2: rgba(235, 235, 235, 0.64);
   --color-background-top: rgba(60, 60, 60, 1);
   --color-text-top: var(--vt-c-text-dark-1);
+  --color-orange: rgb(255, 104, 50);
 }
 
 /* semantic color variables for this project */
@@ -36,6 +38,8 @@
 
   --color-heading: var(--vt-c-text-light-1);
   --color-text: var(--vt-c-text-light-1);
+  --color-text-focus: var(--vt-c-indigo);
+  --color-focus: var(--vt-c-white);
 
   --section-gap: 160px;
 }
@@ -52,6 +56,8 @@
 
     --color-heading: var(--vt-c-text-dark-1);
     --color-text: var(--vt-c-text-dark-2);
+    --color-text-focus: var(--vt-c-text-dark-1);
+    --color-focus: var(--vt-c-text-light-1);
   }
 }
 
@@ -105,4 +111,26 @@ div {
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+.btn-orange {
+  background: var(--color-orange) !important;
+  color: white !important;
+  border-color: var(--color-orange) !important;
+}
+
+.table>:not(caption)>*>* {
+  color: var(--color-text);
+}
+
+.form-control {
+  background-color: var(--color-background);
+  border-color: var(--color-border);
+  color: var(--color-text);
+}
+
+.form-control:focus {
+  background-color: var(--color-focus);
+  border-color: var(--color-border-hover);
+  color: var(--color-text-focus);
 }

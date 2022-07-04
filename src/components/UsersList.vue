@@ -19,8 +19,9 @@
           <td>{{ user.first_name }}</td>
           <td>{{ user.last_name }}</td>
           <td>
-            <i class="material-icons-outlined">info</i>
-            <i class="material-icons">edit</i>
+            <router-link :to="{ name: 'usersEdit', params: { id: user.id }}">
+              <i class="material-icons">edit</i>
+            </router-link>
             <i class="material-icons">delete</i>
           </td>
         </tr>
@@ -33,9 +34,9 @@
 <script setup lang="ts">
 import AppPagination from "@/components/AppPagination.vue";
 import { useUsers } from "@/composable/useUsers";
-const limit = 10;
+const limit = 25;
 const { fetchUsers, usersDownloading, users, usersTotal, changePage, page } =
   useUsers();
 
-await fetchUsers();
+await fetchUsers(limit);
 </script>
