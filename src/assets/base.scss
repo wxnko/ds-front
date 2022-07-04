@@ -134,3 +134,12 @@ div {
   border-color: var(--color-border-hover);
   color: var(--color-text-focus);
 }
+
+.card {
+  background-color: var(--color-background-mute);
+}
+
+.card img {
+  height: 141px;
+  width: auto;
+}
