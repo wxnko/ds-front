@@ -1,9 +1,9 @@
 <template>
-  <div class="col-xs-12 col-md-6 col-lg-4 col-xl-2">
+  <div :class="classList">
     <div class="card m-2">
       <img :src="file.url" class="card-img-top" :alt="file.name" />
-      <div class="card-icon cursor-pointer" @click="deleteImage">
-        <i class="material-icons">delete</i>
+      <div class="card-icon cursor-pointer" @click="iconClicked">
+        <i class="material-icons">{{ icon }}</i>
       </div>
       <div class="card-body">
         <h5 class="card-title">{{ file.name }}</h5>
@@ -27,10 +27,24 @@ import { toRefs } from "vue";
 import type { File } from "@/services/api/files";
 export interface Props {
   file: File;
+  row?: number;
+}
+export interface Emits {
+  (e: 'add', id: number): void
 }
 
+
 const props = defineProps<Props>();
-const { file } = toRefs(props);
+const { file, row } = toRefs(props);
+
+const emit = defineEmits<Emits>()
+
+let classList = "col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2";
+let icon = "delete";
+if (row.value) {
+  icon = "add";
+  classList = `col-${row.value}`;
+}
 
 const calculateFileSize = (size: number) => {
   const kb = size / 1024;
@@ -58,7 +72,13 @@ const prettyDate = (date: string) => {
   const d = new Date(date);
   return d.toLocaleDateString();
 };
-
+function iconClicked() {
+  if (!row) {
+    deleteImage();
+  } else {
+    emit("add");
+  }
+}
 function deleteImage() {
   confirm("Are you sure?");
 }

@@ -70,6 +70,12 @@ export const routes: RouteRecordRaw[] = [
     component: () => import("@/pages/Files.vue"),
     beforeEnter: () => redirectIfNotLogged(),
   },
+  {
+    path: "/playlist/:id",
+    name: "playlist",
+    component: () => import("@/pages/Playlist.vue"),
+    beforeEnter: () => redirectIfNotLogged(),
+  },
 ];
 
 export const router = createRouter({

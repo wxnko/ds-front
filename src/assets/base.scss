@@ -74,6 +74,27 @@
   position: relative;
   font-weight: normal;
 }
+/* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  * {
+    scrollbar-width: auto;
+    scrollbar-color: #000000 var(--color-background-nav);;
+  }
+
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: var(--color-background-soft);;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: var(--color-text);
+    border-radius: 14px;
+    border: 1px solid var(--color-background-soft);
+  }
 
 body {
   min-height: 100vh;
@@ -96,6 +117,12 @@ div {
 .material-icons, .material-icons-outlined {
   user-select: none !important;
   vertical-align: top;
+}
+.top-bar + .container {
+  min-height: calc(100vh - 49px);
+}
+.container {
+  min-height: 100vh;
 }
 
 .flex-table {
@@ -165,4 +192,23 @@ div {
   background-color: var(--color-background-soft);
   border-color: var(--color-border-hover);
   color: var(--color-text-focus);
+}
+
+.container-nav {
+  width:0;
+  position: absolute;
+  background-color: var(--vt-c-black-darker);
+  right: 0;
+  top: 0;
+  height: 100%;
+  overflow: hidden;
+}
+.container-nav.top {
+  top: 49px;
+  height: calc(100% - 49px);
+}
+
+.container-nav.active {
+  width:200px;
+  overflow-y: scroll;
 }
