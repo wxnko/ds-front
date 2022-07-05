@@ -18,9 +18,8 @@
               <img :src="getFile(file.id).url" />
             </div>
             <div class="col-4">{{ getFile(file.id).name }}</div>
-            <div class="col-2">{{ getFile(file.id).size }}</div>
-            <div class="col-2">{{ getFile(file.id).duration }}</div>
-            <div class="col-2">
+            <div class="col-3">{{ prettyDuration(getFile(file.id).default_time) }}</div>
+            <div class="col-3">
               {{ prettyDate(getFile(file.id).created_at) }}
             </div>
             <div class="col-1">
@@ -63,7 +62,6 @@ function getFile(id) {
   if (filesObject[id]) {
     return filesObject[id];
   }
-  console.log(files);
   const file = files.value.find((val) => val.id == id);
   filesObject[file.id] = file;
   return file;
@@ -72,6 +70,7 @@ function prettyDate(date) {
   return new Date(date).toLocaleDateString();
 }
 function prettyDuration(duration) {
+  console.log(duration);
   const seconds = duration / 1000;
   const minutes = seconds / 60;
   const hours = minutes / 60;
